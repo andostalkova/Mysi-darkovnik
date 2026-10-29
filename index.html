@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#D4690A">
+<meta name="theme-color" content="#A8D5B0">
 <title>🎁 Myší dárkovník</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -11,23 +11,32 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #f7f6f2;
+    --bg: #F3F8F3;
     --surface: #ffffff;
-    --border: rgba(0,0,0,0.1);
-    --border-strong: rgba(0,0,0,0.2);
-    --text: #1a1a1a;
-    --text-muted: #6b6b6b;
-    --text-hint: #999;
-    --orange: #D4690A;
-    --orange-light: #FCE8D6;
-    --orange-dark: #A64D07;
-    --orange-deep: #6B3405;
+    --border: rgba(40,80,50,0.12);
+    --border-strong: rgba(40,80,50,0.22);
+    --text: #1F2B22;
+    --text-muted: #5E6E62;
+    --text-hint: #97A69A;
+    --accent: #A8D5B0;
+    --accent-light: #E4F2E6;
+    --accent-hover: #93C99D;
+    --accent-dark: #3F7A4D;
+    --accent-deep: #24492D;
+    --peach-light: #FDEDE1;
+    --peach-text: #9A5B2E;
+    --sky-light: #E3F1F4;
+    --sky-text: #2F6E80;
+    --butter-light: #FBF4D9;
+    --butter-text: #7A6420;
     --amber-light: #FAEEDA;
     --amber-border: #EF9F27;
     --amber-text: #633806;
-    --red-light: #FCEBEB;
-    --red-border: #A32D2D;
-    --red-text: #501313;
+    --red-light: #FBE8EB;
+    --red-border: #D98A97;
+    --red-text: #8E3B49;
+    --imp: #7FB48A;
+    --imp-text: #3F7A4D;
     --radius: 12px;
     --radius-sm: 8px;
     --radius-pill: 999px;
@@ -59,6 +68,17 @@
     margin-bottom: 1.25rem;
   }
 
+  .app-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .me-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--accent-light); border: 1px solid var(--accent);
+    color: var(--accent-dark); border-radius: var(--radius-pill);
+    padding: 4px 12px; font-size: 13px; font-weight: 800; white-space: nowrap;
+  }
+
   .mode-row {
     display: flex;
     gap: 8px;
@@ -78,11 +98,11 @@
     transition: all .15s;
     font-family: 'Nunito', sans-serif;
   }
-  .modeBtn:hover { background: #f0f0f0; }
+  .modeBtn:hover { background: var(--accent-light); }
   .modeBtn.active {
-    background: var(--orange);
-    border-color: var(--orange-dark);
-    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent-dark);
+    color: var(--accent-deep);
   }
 
   .add-btn {
@@ -90,8 +110,8 @@
     padding: 13px;
     border-radius: var(--radius);
     border: none;
-    background: var(--orange);
-    color: #fff;
+    background: var(--accent);
+    color: var(--accent-deep);
     font-size: 16px;
     font-weight: 800;
     cursor: pointer;
@@ -99,7 +119,7 @@
     transition: background .15s;
     margin-bottom: 1rem;
   }
-  .add-btn:hover { background: #A64D07; }
+  .add-btn:hover { background: var(--accent-hover); }
 
   .card {
     background: var(--surface);
@@ -134,12 +154,12 @@
   }
   .field input:focus, .field select:focus {
     outline: none;
-    border-color: var(--orange);
+    border-color: var(--accent);
     background: #fff;
   }
 
   .check-row { display: flex; align-items: center; gap: 9px; }
-  .check-row input { width: 20px; height: 20px; accent-color: var(--red-border); }
+  .check-row input { width: 20px; height: 20px; accent-color: var(--imp); }
   .check-row label { text-transform: none; font-size: 14px; color: var(--text); }
 
   .form-actions { display: flex; gap: 8px; margin-top: 4px; }
@@ -154,10 +174,10 @@
     font-family: 'Nunito', sans-serif;
     transition: all .15s;
   }
-  .btn-primary { background: var(--orange); color: #fff; }
-  .btn-primary:hover { background: #A64D07; }
+  .btn-primary { background: var(--accent); color: var(--accent-deep); }
+  .btn-primary:hover { background: var(--accent-hover); }
   .btn-ghost { background: var(--bg); color: var(--text); border: 1.5px solid var(--border-strong); }
-  .btn-ghost:hover { background: #ececec; }
+  .btn-ghost:hover { background: var(--accent-light); }
 
   .filter-row {
     display: flex;
@@ -182,6 +202,9 @@
     min-height: 44px;
     padding: 10px 12px;
   }
+  .date-filter-actions { display: flex; gap: 6px; }
+  .date-filter-actions .btn { min-height: 44px; padding: 10px 12px; }
+  .date-toggle-row { margin-bottom: 1rem; }
 
   @media (max-width: 560px) {
     .date-filter { grid-template-columns: 1fr; }
@@ -199,8 +222,8 @@
     transition: all .15s;
     font-family: 'Nunito', sans-serif;
   }
-  .chip:hover { background: #f0f0f0; }
-  .chip.active { background: var(--orange-dark); border-color: var(--orange-deep); color: #fff; }
+  .chip:hover { background: var(--accent-light); }
+  .chip.active { background: var(--accent); border-color: var(--accent-dark); color: var(--accent-deep); }
 
   .group-title {
     font-size: 13px;
@@ -222,7 +245,7 @@
     color: var(--text-muted);
   }
   .group-over { color: var(--red-border); }
-  .group-today { color: var(--orange-dark); }
+  .group-today { color: var(--accent-dark); }
   .group-soon { color: var(--amber-text); }
   .group-later { color: var(--text-muted); }
 
@@ -237,7 +260,7 @@
     gap: 11px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
-  .gift.important { border-left: 4px solid var(--red-border); }
+  .gift.important { border-left: 4px solid var(--imp); }
   .gift.done { opacity: .55; }
   .gift.done .gift-title { text-decoration: line-through; }
 
@@ -253,14 +276,14 @@
     font-size: 14px; color: #fff;
     transition: all .15s;
   }
-  .gift-check.on { background: var(--orange); border-color: var(--orange-dark); }
+  .gift-check.on { background: var(--accent); border-color: var(--accent-dark); color: var(--accent-deep); }
 
   .gift-body { flex: 1; min-width: 0; }
   .gift-title {
     font-size: 15px; font-weight: 700; color: var(--text);
     line-height: 1.3; word-break: break-word;
   }
-  .gift-bang { color: var(--red-border); font-weight: 800; margin-right: 4px; }
+  .gift-bang { color: var(--imp-text); font-weight: 900; margin-right: 4px; }
   .gift-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
   .tag {
     font-size: 11px; font-weight: 700;
@@ -269,13 +292,13 @@
   }
   .tag-date { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
   .tag-date.over { background: var(--red-light); color: var(--red-text); border-color: var(--red-border); }
-  .tag-date.today { background: var(--orange-light); color: var(--orange-dark); border-color: var(--orange); }
-  .tag-person { background: var(--orange-light); color: var(--orange-dark); }
+  .tag-date.today { background: var(--accent-light); color: var(--accent-dark); border-color: var(--accent); }
+  .tag-person { background: var(--peach-light); color: var(--peach-text); }
   .p-icon { font-size: 11px; vertical-align: middle; }
   .p-icon.big { font-size: 17px; }
-  .tag-price { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
-  .tag-occasion { background: #FCE8D6; color: #A64D07; }
-  .tag-recipient { background: #E3F2FD; color: #1565C0; }
+  .tag-price { background: var(--accent-light); color: var(--accent-dark); border: 1px solid var(--accent); }
+  .tag-occasion { background: var(--butter-light); color: var(--butter-text); }
+  .tag-recipient { background: var(--sky-light); color: var(--sky-text); }
 
   .gift-del {
     background: none; border: none; cursor: pointer;
@@ -304,11 +327,11 @@
     display: flex; align-items: center; justify-content: center;
     transition: all .15s;
   }
-  .gift-bang-btn:hover { border-color: var(--red-border); color: var(--red-border); }
+  .gift-bang-btn:hover { border-color: var(--imp); color: var(--imp-text); }
   .gift-bang-btn.on {
-    background: var(--red-light);
-    border-color: var(--red-border);
-    color: var(--red-border);
+    background: var(--accent-light);
+    border-color: var(--imp);
+    color: var(--imp-text);
   }
 
   .empty {
@@ -317,19 +340,8 @@
   .empty .mouse { font-size: 44px; margin-bottom: .5rem; }
   .empty p { font-size: 14px; }
 
-  .footer-note {
-    text-align: center; font-size: 12px; color: var(--text-hint);
-    margin-top: 2rem; line-height: 1.5;
-  }
-
-  .me-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; background: var(--orange-light); border: 1px solid var(--orange);
-    color: var(--orange-dark); border-radius: var(--radius-pill);
-    padding: 7px 14px; font-size: 13px; font-weight: 700; margin-bottom: 1rem;
-  }
   .me-change {
-    background: none; border: none; color: var(--orange-dark);
+    background: none; border: none; color: var(--accent-dark);
     text-decoration: underline; cursor: pointer; font-size: 12px;
     font-weight: 700; font-family: 'Nunito', sans-serif; flex-shrink: 0;
   }
@@ -339,12 +351,61 @@
   .me-pick { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .me-chip { font-size: 14px; padding: 8px 16px; }
   .gift-lock { margin-right: 4px; }
+
+  /* Přehled: sloupce podle příjemce */
+  .occ-title {
+    font-family: 'Fredoka One', cursive; font-size: 18px; color: var(--accent-deep);
+    margin: 1.5rem 0 .6rem; display: flex; align-items: center; gap: 8px;
+  }
+  .occ-title:first-child { margin-top: 0; }
+  .occ-title .count {
+    font-family: 'Nunito', sans-serif; background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-pill); padding: 1px 9px; font-size: 11px; color: var(--text-muted);
+  }
+  .board {
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  }
+  .col {
+    flex: 0 0 160px; background: #EAF4EC; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 8px; scroll-snap-align: start;
+  }
+  .col-head {
+    font-size: 13px; font-weight: 800; color: var(--sky-text); margin-bottom: 6px;
+    display: flex; align-items: center; justify-content: space-between; gap: 4px;
+  }
+  .col-head .count {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill);
+    padding: 0 7px; font-size: 11px; color: var(--text-muted);
+  }
+  .mini {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 5px 7px; margin-bottom: 5px; display: flex; gap: 6px; align-items: flex-start;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .mini.important { border-left: 3px solid var(--imp); }
+  .mini.done { opacity: .55; }
+  .mini.done .mini-title { text-decoration: line-through; }
+  .mini .gift-check { width: 18px; height: 18px; font-size: 11px; border-width: 1.5px; margin-top: 1px; }
+  .mini-body { flex: 1; min-width: 0; cursor: pointer; }
+  .mini-title { font-size: 13px; font-weight: 700; line-height: 1.2; word-break: break-word; }
+  .mini-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; margin-top: 2px;
+    font-size: 11px; font-weight: 700; color: var(--text-muted); line-height: 1.3;
+  }
+  .mini-person { color: var(--peach-text); }
+  .mini-sep { color: var(--text-hint); }
+  .mini-date.over { color: var(--red-text); }
+  .mini-date.today { color: var(--accent-dark); }
 </style>
 </head>
 <body>
 <div id="app">
-  <h1>🎁 Myší dárkovník</h1>
-  <p class="subtitle">Plánování dárků pro rodinu</p>
+  <div class="app-head">
+    <h1>🎁 Myší dárkovník</h1>
+    <span id="meBadge"></span>
+  </div>
+  <p class="subtitle">Plánování dárků Marek a Dreika</p>
 
   <div id="meArea"></div>
 
@@ -360,20 +421,15 @@
   <div id="formArea"></div>
   <div id="dateFilterArea"></div>
   <div id="main"></div>
-
-  <div class="footer-note">
-    Dárky se sdílejí mezi všemi telefony v rodině.<br>
-    Appku přidáš na plochu přes „Sdílet → Přidat na plochu".
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const STORAGE_KEY = 'mysi-darkovnik-v1';
 const ME_KEY = 'mysi-darkovnik-me';
-const DEFAULT_PEOPLE = ['An', 'Marek', 'Daník', 'Naty', 'Kari'];
+const DEFAULT_PEOPLE = ['An', 'Marek'];
 const ADULTS = ['An', 'Marek'];
-const DEFAULT_RECIPIENTS = ['An', 'Marek', 'Daník', 'Naty', 'Kari'];
+const DEFAULT_RECIPIENTS = ['Daník', 'Naty', 'Kari', 'An', 'Marek'];
 const DEFAULT_OCCASIONS = ['Vánoce', 'Narozeniny', 'Den dětí', 'Mikuláš'];
 
 const SUPABASE_URL = 'https://wjgdbcbthbfcwokohwxm.supabase.co';
@@ -388,6 +444,7 @@ let filterRecipient = 'vse';
 let filterPerson = 'vse';
 let filterDateFrom = '';
 let filterDateTo = '';
+let dateFilterOpen = false;
 let formOpen = false;
 let editId = null;
 let loadError = '';
@@ -486,11 +543,11 @@ function renderForm() {
           <input type="number" id="fPrice" placeholder="Např. 500" min="0" step="50">
         </div>
         <div class="field">
-          <label>Kdy koupit (nepovinné)</label>
+          <label>Koupit do (nepovinné)</label>
           <input type="date" id="fDate">
         </div>
         <div class="field">
-          <label>Kdo to bude koupit</label>
+          <label>Kdo to koupí</label>
           <select id="fPerson">
             <option value="">— vyber osobu —</option>
             ${DEFAULT_PEOPLE.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('')}
@@ -504,7 +561,7 @@ function renderForm() {
         </div>
         <div class="check-row">
           <input type="checkbox" id="fImp">
-          <label for="fImp">❗ Důležité (připomenutí)</label>
+          <label for="fImp"><span class="gift-bang">!</span>Důležité (připomenutí)</label>
         </div>
         <div class="check-row">
           <input type="checkbox" id="fSecret">
@@ -633,7 +690,7 @@ function giftHTML(t) {
     <div class="gift ${t.important ? 'important' : ''} ${t.done ? 'done' : ''}">
       <div class="gift-check ${t.done ? 'on' : ''}" data-done="${t.id}">${t.done ? '✓' : ''}</div>
       <div class="gift-body">
-        <div class="gift-title">${t.secret ? '<span class="gift-lock" title="Tajné – vidíš jen ty">🔒</span>' : ''}${t.important && !t.done ? '<span class="gift-bang">❗</span>' : ''}${esc(t.title)}</div>
+        <div class="gift-title">${t.secret ? '<span class="gift-lock" title="Tajné – vidíš jen ty">🔒</span>' : ''}${t.important && !t.done ? '<span class="gift-bang">!</span>' : ''}${esc(t.title)}</div>
         ${meta.length ? `<div class="gift-meta">${meta.join('')}</div>` : ''}
       </div>
       <button class="gift-edit" data-edit="${t.id}" title="Upravit">✏️</button>
@@ -651,8 +708,29 @@ function emptyHTML(text) {
   return `<div class="empty"><div class="mouse">🎁</div><p>${text}</p></div>`;
 }
 
+function shortDate(s) {
+  if (!s) return '…';
+  const dt = new Date(s + 'T00:00:00');
+  return dt.getDate() + '. ' + (dt.getMonth() + 1) + '.';
+}
+
 function renderDateFilter() {
   const area = document.getElementById('dateFilterArea');
+  const active = filterDateFrom || filterDateTo;
+
+  if (!dateFilterOpen) {
+    area.innerHTML = `
+      <div class="filter-row date-toggle-row">
+        <button class="chip ${active ? 'active' : ''}" id="openDateFilter" type="button">📅 ${active ? shortDate(filterDateFrom) + ' – ' + shortDate(filterDateTo) : 'Filtr podle termínu'}</button>
+        ${active ? '<button class="chip" id="clearDateFilter" type="button" title="Zrušit filtr">✕</button>' : ''}
+      </div>
+    `;
+    document.getElementById('openDateFilter').addEventListener('click', () => { dateFilterOpen = true; render(); });
+    const clr = document.getElementById('clearDateFilter');
+    if (clr) clr.addEventListener('click', () => { filterDateFrom = ''; filterDateTo = ''; render(); });
+    return;
+  }
+
   area.innerHTML = `
     <div class="date-filter">
       <div class="field">
@@ -663,45 +741,66 @@ function renderDateFilter() {
         <label for="filterDateTo">Koupit do</label>
         <input type="date" id="filterDateTo" value="${esc(filterDateTo)}">
       </div>
-      <button class="btn btn-ghost" id="clearDateFilter" type="button">Zrušit filtr</button>
+      <div class="date-filter-actions">
+        <button class="btn btn-ghost" id="clearDateFilter" type="button">Zrušit filtr</button>
+        <button class="btn btn-primary" id="closeDateFilter" type="button">Hotovo</button>
+      </div>
     </div>
   `;
 
   const fromEl = document.getElementById('filterDateFrom');
   const toEl = document.getElementById('filterDateTo');
   const clearEl = document.getElementById('clearDateFilter');
+  const closeEl = document.getElementById('closeDateFilter');
 
   fromEl.addEventListener('change', () => { filterDateFrom = fromEl.value; render(); });
   toEl.addEventListener('change', () => { filterDateTo = toEl.value; render(); });
-  clearEl.addEventListener('click', () => { filterDateFrom = ''; filterDateTo = ''; render(); });
+  clearEl.addEventListener('click', () => { filterDateFrom = ''; filterDateTo = ''; dateFilterOpen = false; render(); });
+  closeEl.addEventListener('click', () => { dateFilterOpen = false; render(); });
+}
+
+function miniHTML(t) {
+  const d = dayDiff(t.date);
+  let dateCls = 'mini-date';
+  if (!t.done && d !== null && d < 0) dateCls += ' over';
+  else if (!t.done && d === 0) dateCls += ' today';
+  const meta = [];
+  if (t.person) meta.push(`<span class="mini-person">🐭 ${esc(t.person)}</span>`);
+  if (t.date) meta.push(`<span class="${dateCls}">${formatDate(t.date)}</span>`);
+  return `
+    <div class="mini ${t.important ? 'important' : ''} ${t.done ? 'done' : ''}">
+      <div class="gift-check ${t.done ? 'on' : ''}" data-done="${t.id}">${t.done ? '✓' : ''}</div>
+      <div class="mini-body" data-edit="${t.id}" title="Upravit">
+        <div class="mini-title">${t.secret ? '🔒 ' : ''}${t.important && !t.done ? '<span class="gift-bang">!</span>' : ''}${esc(t.title)}</div>
+        ${meta.length ? `<div class="mini-meta">${meta.join('<span class="mini-sep">·</span>')}</div>` : ''}
+      </div>
+    </div>
+  `;
 }
 
 function renderPrehled() {
   const gs = applyDueDateFilter(visibleGifts());
-  const active = gs.filter(t => !t.done);
-  const done = gs.filter(t => t.done);
+  const recipients = allRecipients();
   let html = '';
-  
-  for (const occ of allOccasions()) {
-    const occGifts = active.filter(t => t.occasion === occ);
-    if (!occGifts.length) continue;
-    
-    const over = occGifts.filter(t => t.date && dayDiff(t.date) < 0).sort(byDate);
-    const today = occGifts.filter(t => dayDiff(t.date) === 0).sort(byDate);
-    const soon = occGifts.filter(t => { const d = dayDiff(t.date); return d !== null && d > 0 && d <= 7; }).sort(byDate);
-    const later = occGifts.filter(t => { const d = dayDiff(t.date); return d !== null && d > 7; }).sort(byDate);
-    const noDate = occGifts.filter(t => !t.date);
 
-    let occHtml = `<div class="group-title" style="margin-top: 1.5rem; font-size: 16px;"><strong>${esc(occ)}</strong></div>`;
-    if (over.length) occHtml += group('group-over', '⚠️ Po termínu', over);
-    if (today.length) occHtml += group('group-today', '📍 Dnes', today);
-    if (soon.length) occHtml += group('group-soon', '🔜 Brzy (do týdne)', soon);
-    if (later.length) occHtml += group('group-later', '🗓️ Později', later);
-    if (noDate.length) occHtml += group('group-later', '📝 Bez termínu', noDate);
-    html += occHtml;
+  for (const occ of allOccasions()) {
+    const occGifts = gs.filter(t => t.occasion === occ);
+    if (!occGifts.length) continue;
+
+    const cols = recipients.map(r => {
+      const mine = occGifts.filter(t => t.recipient === r);
+      if (!mine.length) return '';
+      const sorted = [...mine.filter(t => !t.done).sort(byDate), ...mine.filter(t => t.done)];
+      return `
+        <div class="col">
+          <div class="col-head"><span>🎁 ${esc(r)}</span><span class="count">${mine.length}</span></div>
+          ${sorted.map(miniHTML).join('')}
+        </div>`;
+    }).join('');
+
+    html += `<div class="occ-title">${esc(occ)}<span class="count">${occGifts.length}</span></div><div class="board">${cols}</div>`;
   }
 
-  if (done.length) html += group('group-later', '✅ Koupeno', done);
   if (!state.gifts.length) html = emptyHTML('Zatím tu nejsou žádné dárky.<br>Přidej první přes „+ Nový dárek\".');
   return html;
 }
@@ -794,7 +893,9 @@ function render() {
 
 function renderMe() {
   const area = document.getElementById('meArea');
+  const badge = document.getElementById('meBadge');
   if (!me) {
+    badge.innerHTML = '';
     area.innerHTML = `
       <div class="card me-card">
         <div class="me-title">Kdo jsi? 🐭</div>
@@ -804,10 +905,8 @@ function renderMe() {
         </div>
       </div>`;
   } else {
-    area.innerHTML = `
-      <div class="me-row">
-        <span>Jsi myškou ${personIcon(me)} <strong>${esc(me)}</strong></span>
-      </div>`;
+    area.innerHTML = '';
+    badge.innerHTML = `<span class="me-badge" title="Jsi myškou ${esc(me)}">${personIcon(me)} ${esc(me)}</span>`;
   }
   area.querySelectorAll('[data-me]').forEach(el =>
     el.addEventListener('click', () => setMe(el.dataset.me)));
@@ -815,7 +914,7 @@ function renderMe() {
 function setMe(name) {
   me = name;
   localStorage.setItem(ME_KEY, name);
-  view = 'nákupčí';
+  view = 'prehled';
   filterPerson = name;
   render();
 }
@@ -837,7 +936,8 @@ document.getElementById('addBtn').addEventListener('click', () => {
 
 async function init() {
   render();
-  if (me) { view = 'nákupčí'; filterPerson = me; }
+  // Společný přehled je výchozí pro oba; záložka Nákupčí je předvybraná na mé nákupy
+  if (me) filterPerson = me;
   await reload();
   sb.channel('gifts-changes')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'gifts' }, () => reload())
